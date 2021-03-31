@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\LogAcessoMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Criação de rotas                                Nomeando rotas
-Route::get('/','PrincipalController@principal')->name('site.index');
+Route::middleware('log_acesso')
+    ->get('/','PrincipalController@principal')
+    ->name('site.index');
 Route::get('/sobrenos','SobreNosController@sobrenos')->name('site.sobrenos');
 Route::get('/contato','ContatoController@contato')->name('site.contato');
 Route::post('/contato','ContatoController@salvar')->name('site.contato');
