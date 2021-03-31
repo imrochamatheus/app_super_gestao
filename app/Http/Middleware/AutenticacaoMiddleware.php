@@ -16,6 +16,12 @@ class AutenticacaoMiddleware
     public function handle($request, Closure $next)
     {
         //return $next($request);
-        return response('Acesso negado! Rota exige autenticação!!!');
+        //verifica se o usuário tem acesso a rota
+        if(false){
+            return $next($request);
+        }else{
+            return response('Acesso negado! Rota exige autenticação!!!');
+        }
+        
     }
 }

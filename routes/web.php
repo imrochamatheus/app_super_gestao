@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\LogAcessoMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +24,7 @@ Route::get('/login', function(){return 'Login';})->name('site.login');
 
 
 //Agrupamento de rotas                                      Nomeando rotas
-Route::prefix('app')->group(function(){
+Route::prefix('app')->middleware('log_acesso','autenticacao')->group(function(){
     Route::get('/clientes',function(){return 'Clientes';})->name('app.clientes');
     Route::get('/fornecedores','FornecedorController@index')->name('app.fornecedores');
     Route::get('/produtos',function(){return 'Produtos';})->name('app.produtos');
